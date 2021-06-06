@@ -17,6 +17,10 @@ export class IotComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  open(){
+    console.log("login Works")
+  }
+
   clearErrorMessage() {
     this.errorMessage = '';
     this.error = { name: '', message: '' };
