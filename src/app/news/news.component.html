@@ -1,28 +1,36 @@
-
-<mat-toolbar color="primary">
+<mat-toolbar style="background-color:#161625;color: aliceblue;">
   <span>EVENTS</span>
-  <!-- <button mat-button (click)="toggleGridColumns()" fxHide.lt-md> -->
-    <button mat-flat-button color="primary" routerLink="/iot">LOGIN</button>
-    <!-- <button *ngIf="gridColumns === 4">Three Columns</span>
-    <span *ngIf="gridColumns === 3">Four Columns</span> -->
-  <!-- </button> -->
+
+  <div class="home">
+  <a mat-flat-button class="home" style="background-color:#161625;color: aliceblue;"
+   routerLink="/home">
+   HOME
+  </a>
+</div>
+<div class="login">
+  <a mat-flat-button class="login" style="background-color:#161625;color: aliceblue;"
+   routerLink="/iot">
+    LOGIN
+  </a>
+</div>
+
 </mat-toolbar>
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]">
-      <mat-card class="mat-elevation-z4">
+    <div fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let event of Event">
+      <mat-card class="mat-elevation-z4" style="background-color:#333c7e; color: aliceblue;">
         <mat-card-header>
-          <mat-card-title>Events {{num}}</mat-card-title>
+          <mat-card-title>Event</mat-card-title>
         </mat-card-header>
         <img mat-card-image src="">
         <mat-card-content>
-
-          <h2>IoT is the Pride of BIT.</h2>
-
+              <h2>{{event.payload.doc.data().name }}</h2>
+              <h3>{{event.payload.doc.data().date }}</h3>
+              <h3>{{event.payload.doc.data().description }}</h3>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>Register Link</button>
-          <!-- <button mat-button>SHARE</button> -->
+          <a href="{{event.payload.doc.data().link}}" (click)="onSelect()" style="background-color: rgb(98, 98, 235);" mat-button>Register Link
+          </a>
         </mat-card-actions>
       </mat-card>
     </div>
