@@ -17,12 +17,12 @@ mat-toolbar {
   text-decoration: none;
   letter-spacing: 0.11em;
 }
-.home{
-margin-left: 35%;
+/* .home{
+margin-left: 25%;
 }
 .login{
   margin-right: 20%;
-}
+} */
 
 
 .home:hover {

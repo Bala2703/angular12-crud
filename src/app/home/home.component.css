@@ -1,3 +1,13 @@
 mat-toolbar{
   justify-content: space-between;
 }
+
+h1 {
+word-spacing: 20px;
+word-break: keep-all;
+color: aliceblue;
+text-transform: uppercase;
+font-family: 'Architects Daughter', cursive;
+}
+
+

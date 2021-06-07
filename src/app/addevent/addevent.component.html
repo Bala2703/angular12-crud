@@ -1,8 +1,20 @@
 <mat-toolbar style="background-color:#161625;color: aliceblue;">
   <a  mat-flat-button href=""style="background-color:#161625;color: aliceblue;" routerLink="/home">
-     IoT
+     INTERNET &nbsp;  OF &nbsp; THINGS
   </a>
-  <button color="primary" mat-flat-button routerLink="/news">DASHBOARD</button>
+  <!-- <button color="primary" mat-flat-button routerLink="/news">DASHBOARD</button> -->
+
+  <div class="home">
+    <a mat-flat-button class="home" style="background-color:#161625;color: aliceblue;"
+     routerLink="/home">
+     HOME
+    </a>
+    <a mat-flat-button class="dashboard" style="background-color:#161625;color: aliceblue;"
+     routerLink="/news">
+      DASHBOARD
+    </a>
+  </div>
+
 </mat-toolbar>
 <div class="row justify-content-center p-4">
   <div class="col-md-6">
@@ -23,8 +35,8 @@
   <input type="" class="form-control" [(ngModel)]="eventDescription" placeholder="Enter Description">
   </div>
 
-<!-- <div class="form-group"> -->
-<button mat-flat-button color="primary" (click)="Open()" [disabled]="!eventName || !eventDate || !eventLink || !eventDescription">
+<!-- <div class="form-group"> -->&nbsp;
+<button mat-flat-button style="background-color: rgb(70, 106, 226); color: aliceblue;" (click)="Open()" [disabled]="!eventName || !eventDate || !eventLink || !eventDescription">
   Add Event
 </button>
 <div class="form-group">
@@ -33,26 +45,26 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Link</th>
+    <tr style="color: aliceblue;">
+      <th>Name</th>&nbsp;
+      <th>Date</th>&nbsp;
+      &nbsp;<th>Link</th>&nbsp;
       <th>Description</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody style="color: aliceblue;">
     <tr *ngFor="let event of Event">
       <td>
         {{ event.payload.doc.data().name | json}}
-      </td>
+      </td>&nbsp;
       <td>
         {{ event.payload.doc.data().date | json}}
-      </td>
+      </td>&nbsp;
       <td>{{ event.payload.doc.data().link | json}}</td>
       <td>
         <td>{{ event.payload.doc.data().description | json}}</td>
-      <td>
+      <td>&nbsp;
         <span *ngFor="let event of event.payload.doc.data().new ">
           {{ event | json }}
         </span>
