@@ -10,7 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { environment } from "../environments/environment";
+import { environment } from "../environments/environment.prod";
 
 
 //IMPORTS OF ANGULAR MATERIAL
