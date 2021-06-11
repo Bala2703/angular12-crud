@@ -18,7 +18,7 @@ export class IotComponent implements OnInit {
   }
 
   open(){
-    console.log("login Works")
+    // console.log("login Works")
   }
 
   clearErrorMessage() {

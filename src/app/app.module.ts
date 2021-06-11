@@ -33,6 +33,7 @@ import { NewsComponent } from './news/news.component';
 import { AddeventComponent } from './addevent/addevent.component';
 import { CrudService } from "./services/crud.service";
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HomeComponent } from './home/home.component';
     IotComponent,
     NewsComponent,
     AddeventComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

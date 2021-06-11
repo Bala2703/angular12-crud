@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from "../services/crud.service";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { AuthService } from "../services/auth.service";
+import { Router } from "@angular/router";
+import { AngularFireAuth } from "@angular/fire/auth";
 @Component({
   selector: 'app-addevent',
   templateUrl: './addevent.component.html',
@@ -15,19 +18,13 @@ eventLink!:string;
 eventDescription!:string;
 message=""
 // Record: { name: string } = { name: ''};
-  constructor(private crudservice:CrudService,private firestore: AngularFirestore) { }
+  constructor(private crudservice:CrudService,
+    private router : Router,
+   private afu:AngularFireAuth, private firestore: AngularFirestore,private authservice:AuthService) { }
 
   ngOnInit(): void {
       this.getEvent();
-      // this.firestore
-      // .collection(this.Event)
-      // .get().subscribe((a)=>
-      // {
-      //   a.docs.forEach((doc)=>
-      //   {
-      //     this.myArray.push(doc.data());
-      //   });
-      // })
+
   }
 
   getEvent = () =>
@@ -52,5 +49,11 @@ message=""
     }).catch(error => {
       console.log(error)
     })
+  }
+
+  signout(): void
+  {
+    this.afu.signOut();
+    this.router.navigate(['/iot']);
   }
 }
