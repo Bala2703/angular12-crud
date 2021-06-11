@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {  AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +14,14 @@ export class AuthService {
       this.authState = auth;
     }))
   }
+
+
+  // public isAuthenticated(): boolean {
+  //   const token = localStorage.getItem('token');
+  //   // Check whether the token is expired and return
+  //   // true or false
+  //   return !this.jwtHelper.isTokenExpired('token');
+  // }
 
   // all firebase getdata functions
 
