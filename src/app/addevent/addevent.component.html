@@ -13,7 +13,7 @@
      routerLink="/news">
       DASHBOARD
     </a>
-    <a type="submit" mat-raised-button routerLink="register"color="primary" >Add New User</a>
+    <a type="submit" mat-raised-button routerLink="/register"color="primary" >Add New User</a>
 
   </div>
 
@@ -34,9 +34,9 @@
   </div>
 
 <div class="form-group p-2">
-  <input type="" class="form-control" [(ngModel)]="eventDescription" placeholder="Enter Description">
+    <textarea name="paragraph_text" [(ngModel)]="eventDescription" placeholder="Enter Description" cols="60" rows="4"></textarea>
   </div>
-        &nbsp;
+
 
   <div fxLayout="row" fxLayoutAlign="space-between">
 <button mat-flat-button style="background-color: rgb(70, 106, 226); color: aliceblue;" (click)="Open()" [disabled]="!eventName || !eventDate || !eventLink || !eventDescription">

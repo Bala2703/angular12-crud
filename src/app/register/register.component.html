@@ -10,9 +10,10 @@
               <input type="password" name="password" class="form-control" [(ngModel)]="password" placeholder="Password"
                   required>
           </div>
-          <div class="form-group p-2">
+          <div class="form-group p-2" fxLayout="row" fxLayoutAlign="space-between">
               <button type="submit" mat-raised-button color="primary">Register</button>
-              <div class="register"><a href="#" routerLink="/iot">Back To Login</a></div>
+              <div class="register">
+                <button mat-raised-button routerLink="/iot">Back To Login</button></div>
           </div>
           </form>
           <div class="form-group">
