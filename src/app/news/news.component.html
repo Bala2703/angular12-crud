@@ -6,10 +6,14 @@
    routerLink="/home">
    HOME
   </a>
-  <a mat-flat-button class="login" style="background-color:#161625;color: aliceblue;"
+  <a *ngIf="!userStatus" mat-flat-button class="login" style="background-color:#161625;color: aliceblue;"
    routerLink="/iot">
     LOGIN
   </a>
+  <a  mat-flat-button class="login" style="background-color:#161625;color: aliceblue;"
+  routerLink="/admin">
+   ADMIN
+ </a>
 </div>
 
 </mat-toolbar>

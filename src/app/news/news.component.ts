@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { CrudService } from "../services/crud.service";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { DOCUMENT } from '@angular/common';
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: 'app-news',
@@ -13,10 +14,14 @@ export class NewsComponent implements OnInit {
 
   gridColumns = 3;
 
-  constructor(private crudservice:CrudService,@Inject(DOCUMENT) private document:Document) {
+
+  userStatus=this.authService.userStatus
+  constructor(private authService: AuthService,private crudservice:CrudService,@Inject(DOCUMENT) private document:Document) {
 
   }
     ngOnInit(): void {
+      this.authService.userStatusChanges.subscribe(x => this.userStatus = x);
+      console.log(this.userStatus)
     this.getEvent();
   }
 

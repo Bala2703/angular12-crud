@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddeventComponent } from './addevent/addevent.component';
+import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { IotComponent } from "./iot/iot.component";
 import { NewsComponent } from './news/news.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path : 'news' , component : NewsComponent},
   {path : 'addevent' , component : AddeventComponent},
   {path : 'home' , component : HomeComponent},
-  {path : 'register', component : RegisterComponent}
+  {path : 'register', component : RegisterComponent},
+  {path : 'admin' , component : AdminComponent}
 ];
 
 @NgModule({

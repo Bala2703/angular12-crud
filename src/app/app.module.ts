@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from "@angular/forms";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 
 
 //INSTALL FIREBASE - npm install --save firebase @angular/fire
@@ -34,6 +34,7 @@ import { AddeventComponent } from './addevent/addevent.component';
 import { CrudService } from "./services/crud.service";
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { RegisterComponent } from './register/register.component';
     NewsComponent,
     AddeventComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { RegisterComponent } from './register/register.component';
     MatGridListModule,
     FlexLayoutModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
 
   ],
