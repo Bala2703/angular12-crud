@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable,NgZone } from '@angular/core';
 import {  AngularFireAuth } from "@angular/fire/auth";
+import { AngularFirestore } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +11,56 @@ export class AuthService {
 
   authState: any = null;
 
-  constructor(private afu: AngularFireAuth, private router: Router) {
+
+
+  constructor(private afu: AngularFireAuth, private router: Router,
+    private ngZone:NgZone,private firestore : AngularFirestore) {
     this.afu.authState.subscribe((auth =>{
       this.authState = auth;
     }))
   }
 
+public currentuser : any;
+public userStatus! : string;
+public userStatusChanges : BehaviorSubject<string> = new BehaviorSubject<string>(this.userStatus);
 
-  // public isAuthenticated(): boolean {
-  //   const token = localStorage.getItem('token');
-  //   // Check whether the token is expired and return
-  //   // true or false
-  //   return !this.jwtHelper.isTokenExpired('token');
-  // }
+setUserStatus(userStatus:any):void{
 
-  // all firebase getdata functions
+  this.userStatus = userStatus;
+  this.userStatusChanges.next(userStatus);
+}
+
+signUp(email : string,password: string){
+
+  this.afu.createUserWithEmailAndPassword(email,password)
+  .then((userResponse)=>
+  {
+    let user =
+    {
+      id : userResponse.user?.uid,
+      username : userResponse.user?.email,
+      role : "user",
+    }
+
+    //add user in database
+    this.firestore.collection("users").add(user)
+    .then(user =>
+      {
+        user.get().then(x=>
+          {
+            console.log(x.data);
+            this.currentuser = x.data;
+            this.setUserStatus(this.currentUser);
+            this.router.navigate(["/"])
+          })
+      }).catch(err =>
+        {
+          console.log(err);
+        })
+  }).catch((err) =>{
+    console.log("An error Occured:",err);
+  })
+}
 
   get isUserAnonymousLoggedIn(): boolean {
     return (this.authState !== null) ? this.authState.isAnonymous : false

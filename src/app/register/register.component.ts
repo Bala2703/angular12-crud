@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -31,7 +30,8 @@ export class RegisterComponent implements OnInit {
     this.clearErrorMessage();
     if(this.validateForm(this.email,this.password))
     {
-      this.authService.registerWithEmail(this. email, this.password).then(()=>{
+      this.authService.registerWithEmail(this. email, this.password)
+      .then(()=>{
         this.message="you are registered"
           this.router.navigate(['/welcome'])
   }).catch((_error: { name: string; message: string; }) =>{
