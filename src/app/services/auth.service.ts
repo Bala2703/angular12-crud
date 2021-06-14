@@ -24,11 +24,14 @@ public currentuser : any;
 public userStatus! : string;
 public userStatusChanges : BehaviorSubject<string> = new BehaviorSubject<string>(this.userStatus);
 
-setUserStatus(userStatus:any):void{
+setUserStatus(userStatus:any):void
+  {
+    this.userStatus = userStatus;
+    this.userStatusChanges.next(userStatus);
+  }
 
-  this.userStatus = userStatus;
-  this.userStatusChanges.next(userStatus);
-}
+
+
 
 signUp(email : string,password: string){
 
@@ -43,7 +46,7 @@ signUp(email : string,password: string){
     }
 
     //add user in database
-    this.firestore.collection("users").add(user)
+    this.firestore.collection("User").add(user)
     .then(user =>
       {
         user.get().then(x=>
@@ -61,6 +64,51 @@ signUp(email : string,password: string){
     console.log("An error Occured:",err);
   })
 }
+
+
+      login(email:string,password:string)
+      {
+        this.afu.signInWithEmailAndPassword(email,password)
+        .then((user)=>
+        {
+          this.firestore.collection("User").ref.where("username","==",user.user?.email).onSnapshot
+          (snap=>{
+            snap.forEach((userRef:any)=>
+              {
+                console.log(userRef,userRef.data());
+                this.currentuser=userRef.data();
+
+                this.setUserStatus(this.currentuser)
+                if(userRef.data().role !=="admin"){
+                  this.router.navigate(['/'])
+                }
+                else
+                {
+                  this.router.navigate(["/admin"]);
+                }
+              })
+          })
+        }).catch( err => err)
+      }
+
+
+      logout()
+      {
+        this.afu.signOut()
+        .then(()=>
+        {
+          console.log("logouot successfully");
+          this.currentuser=null;
+          this.setUserStatus(null);
+          this.router.navigate(['/login']);
+        }).catch((err)=>
+        {
+          console.log(err);
+          })
+      }
+
+
+
 
   get isUserAnonymousLoggedIn(): boolean {
     return (this.authState !== null) ? this.authState.isAnonymous : false
